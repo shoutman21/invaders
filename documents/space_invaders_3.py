@@ -37,8 +37,9 @@ while running : # boucle infinie pour laisser la fenêtre ouverte
             if event.key == pygame.K_RIGHT : # si la touche est la fleche droite
                 player.sens = "droite" # on déplace le vaisseau de 1 pixel sur la gauche
             if event.key == pygame.K_SPACE : # espace pour tirer
-                player.tirer()
                 tir.etat = "tiree"
+                player.tirer()
+                
 
     ### Actualisation de la scene ###
     # deplacement des objets

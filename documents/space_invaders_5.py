@@ -1,6 +1,7 @@
 import pygame # importation de la librairie pygame
 import space
 import sys # pour fermer correctement l'application
+import random
 
 # lancement des modules inclus dans pygame
 pygame.init() 
@@ -13,12 +14,14 @@ fond = pygame.image.load('background.png')
 
 # creation du joueur
 player = space.Joueur()
+player2 = space.Joueur2()
 # creation de la balle
 tir = space.Balle(player)
 tir.etat = "chargee"
 # creation des ennemis
+NbEnnemis=random.randint(3,10)
 listeEnnemis = []
-for indice in range(space.Ennemi.NbEnnemis):
+for indice in range(NbEnnemis):
     vaisseau = space.Ennemi()
     listeEnnemis.append(vaisseau)
     
@@ -44,6 +47,16 @@ while running : # boucle infinie pour laisser la fenêtre ouverte
             if event.key == pygame.K_SPACE : # espace pour tirer
                 player.tirer()
                 tir.etat = "tiree"
+    #création d'un tableau score
+    score = player.score
+    myfont = pygame.font.SysFont("monospace", 16)
+    score_display = myfont.render(("SCORE J1 = "+str(score)), 1, (255,255,0))
+    screen.blit(score_display, (25, 25))
+    
+    score2 = player2.score
+    myfont = pygame.font.SysFont("monospace", 16)
+    score_display = myfont.render(("SCORE J2 = "+str(score2)), 1, (255,255,0))
+    screen.blit(score_display, (725, 725))
 
     ### Actualisation de la scene ###
     # Gestions des collisions
